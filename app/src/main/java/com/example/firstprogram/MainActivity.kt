@@ -13,17 +13,18 @@ import android.util.Log
 class MainActivity : AppCompatActivity() {
     private var count: Long = 0;
     fun getStore() = getPreferences(Context.MODE_PRIVATE)
+    private var userName: String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        intent.extras?.get("username")
+        this.userName = intent.extras?.get("username").toString()
         if (savedInstanceState != null) {
-            updateCounter(savedInstanceState.getLong(myCounter_key, 0))
-        } else if (getStore().contains(myCounter_key)) {
-            updateCounter(getStore().getLong(myCounter_key, 0))
+            updateCounter(savedInstanceState.getLong(userName, 0))
+        } else if (getStore().contains(userName)) {
+            updateCounter(getStore().getLong(userName, 0))
         }
 //            count = savedInstanceState.getLong(myCounter_key, 0)
 //            myCounter.text = count.toString();
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
        super.onPause()
-       getStore().edit().putLong(myCounter_key, count).apply()
+       getStore().edit().putLong(userName, count).apply()
    }
 
     private fun updateCounter(count1: Long)
@@ -50,14 +51,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle?) {
         outState?.run {
-            putLong(myCounter_key, count)
+            putLong(userName, count)
         }
         super.onSaveInstanceState(outState)
     }
 
-    companion object{
-        private const val myCounter_key = "myCounterKey"
-    }
+//    companion object{
+//        private const val myCounter_key = "myCounterKey"
+//    }
 
 
 }

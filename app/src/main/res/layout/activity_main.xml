@@ -27,8 +27,28 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/myButton"
         android:text="0"
-        tools:layout_editor_absoluteX="152dp"
-        tools:layout_editor_absoluteY="214dp" />
+        android:textSize="40dp"
+        tools:layout_editor_absoluteX="300dp"
+        tools:layout_editor_absoluteY="400dp" />
+
+    <ImageView
+        android:id="@+id/moneyImage"
+        android:layout_width="126dp"
+        android:layout_height="188dp"
+        android:layout_marginBottom="100dp"
+        android:src="@drawable/ic_rotate_foreground"
+        app:layout_constraintBottom_toTopOf="@id/myButton"
+        app:layout_constraintLeft_toLeftOf="@id/myButton" />
+
+    <TextView
+        android:id="@+id/passed5Text"
+        android:layout_width="214dp"
+        android:layout_height="112dp"
+        android:text="GREAT JOB! Keep going"
+        android:textSize="30dp"
+        app:layout_constraintLeft_toLeftOf="@id/myButton"
+        app:layout_constraintTop_toBottomOf="@id/myButton" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

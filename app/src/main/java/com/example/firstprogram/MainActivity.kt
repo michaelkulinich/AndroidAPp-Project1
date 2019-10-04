@@ -12,6 +12,7 @@ import android.util.Log
 
 class MainActivity : AppCompatActivity() {
     private var count: Long = 0;
+    private var passed5: Long = 5;
     fun getStore() = getPreferences(Context.MODE_PRIVATE)
     private var userName: String = ""
 
@@ -20,19 +21,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        passed5Text.visibility = View.GONE
         this.userName = intent.extras?.get("username").toString()
         if (savedInstanceState != null) {
             updateCounter(savedInstanceState.getLong(userName, 0))
         } else if (getStore().contains(userName)) {
             updateCounter(getStore().getLong(userName, 0))
         }
-//            count = savedInstanceState.getLong(myCounter_key, 0)
-//            myCounter.text = count.toString();
-
 
         myButton.setOnClickListener {
             count++;
             myCounter.text = count.toString();
+            if(count >= passed5) {
+                passed5Text.visibility = View.VISIBLE
+            }
         }
     }
 
@@ -42,9 +44,9 @@ class MainActivity : AppCompatActivity() {
        getStore().edit().putLong(userName, count).apply()
    }
 
-    private fun updateCounter(count1: Long)
+    private fun updateCounter(c: Long)
     {
-        count = count1;
+        count = c;
         myCounter.text = count.toString()
     }
 

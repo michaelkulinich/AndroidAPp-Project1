@@ -27,6 +27,9 @@ class MainActivity : AppCompatActivity() {
             updateCounter(savedInstanceState.getLong(userName, 0))
         } else if (getStore().contains(userName)) {
             updateCounter(getStore().getLong(userName, 0))
+            if(count >= passed5) {
+                passed5Text.visibility = View.VISIBLE
+            }
         }
 
         myButton.setOnClickListener {

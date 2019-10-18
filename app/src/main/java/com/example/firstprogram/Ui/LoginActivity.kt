@@ -1,10 +1,11 @@
-package com.example.firstprogram
+package com.example.firstprogram.Ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
+import com.example.firstprogram.R
 import kotlinx.android.synthetic.main.activity_login.*
 
 

@@ -15,7 +15,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var countViewModel: CountViewModel
-    private var count: Long = 0;
+    private var count: Long = 0
    // private var passed5: Long = 5;
     //fun getStore() = getPreferences(Context.MODE_PRIVATE)
    // private var userName: String = ""
@@ -26,9 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
-        countViewModel = ViewModelProviders.of(this).get(countViewModel::class.java)
+        countViewModel = ViewModelProviders.of(this).get(CountViewModel::class.java)
         countViewModel.getUserCount(getUsername()).observe(this,
             androidx.lifecycle.Observer { updateCounter(it) })
 
@@ -69,7 +67,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateCounter(c: Long)
     {
 
-        count = c;
+        count = c
         myCounter.text = count.toString()
     }
 

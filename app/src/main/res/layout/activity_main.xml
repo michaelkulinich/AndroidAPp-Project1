@@ -30,24 +30,71 @@
         android:textSize="40dp"
         tools:layout_editor_absoluteX="300dp"
         tools:layout_editor_absoluteY="400dp" />
+    <Button
+        android:id="@+id/guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myCounter"
+        android:text="Guide"
+        android:textSize="40dp" />
+    <TextView
+        android:id="@+id/listPrizes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/myCounter"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myButton"
+        android:text="LEVEL 1: 5 clicks\nLevel 2: 10 clicks\nLevel 3: 20 clicks\nClick guide to close"
+        android:textSize="20dp"
+         />
+
 
     <ImageView
-        android:id="@+id/moneyImage"
-        android:layout_width="126dp"
-        android:layout_height="188dp"
-        android:layout_marginBottom="100dp"
-        android:src="@drawable/ic_rotate_foreground"
+        android:id="@+id/hogImage"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@mipmap/ic_hog"
         app:layout_constraintBottom_toTopOf="@id/myButton"
-        app:layout_constraintLeft_toLeftOf="@id/myButton" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        />
+    <ImageView
+        android:id="@+id/tadpoleImage"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@mipmap/ic_tadpole"
+        app:layout_constraintBottom_toTopOf="@id/myButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        />
+    <ImageView
+        android:id="@+id/raptorImage"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@mipmap/ic_velociraptor"
+        app:layout_constraintBottom_toTopOf="@id/myButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        />
+
 
     <TextView
-        android:id="@+id/passed5Text"
+        android:id="@+id/level"
         android:layout_width="214dp"
         android:layout_height="112dp"
-        android:text="GREAT JOB! Keep going"
+        android:text="LEVEL 1: TadPole"
         android:textSize="30dp"
-        app:layout_constraintLeft_toLeftOf="@id/myButton"
-        app:layout_constraintTop_toBottomOf="@id/myButton" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myButton"
+         />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

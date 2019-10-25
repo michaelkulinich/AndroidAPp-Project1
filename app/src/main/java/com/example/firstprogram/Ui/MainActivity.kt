@@ -16,7 +16,7 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     private lateinit var countViewModel: CountViewModel
     private var count: Long = 0
-   // private var passed5: Long = 5;
+
     //fun getStore() = getPreferences(Context.MODE_PRIVATE)
    // private var userName: String = ""
     private fun getUsername() = intent.extras?.get("username").toString().toLowerCase(Locale.US)
@@ -25,13 +25,38 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        level.visibility = View.GONE
+        hogImage.visibility = View.GONE
+        tadpoleImage.visibility = View.GONE
+        raptorImage.visibility = View.GONE
+        listPrizes.visibility = View.GONE
         countViewModel = ViewModelProviders.of(this).get(CountViewModel::class.java)
         countViewModel.getUserCount(getUsername()).observe(this,
             androidx.lifecycle.Observer { updateCounter(it) })
 
         myButton.setOnClickListener {
+            if(count >= (4).toLong()) {
+                level.visibility = View.VISIBLE
+                tadpoleImage.visibility = View.VISIBLE
+            }
+            if(count >= (9).toLong()) {
+                tadpoleImage.visibility = View.GONE
+                level.text = "LEVEL 2: HOG"
+                hogImage.visibility = View.VISIBLE
+            }
+            if(count >= (19).toLong()) {
+                hogImage.visibility = View.GONE
+                level.text = "LEVEL 3: RAPTOR"
+                raptorImage.visibility = View.VISIBLE
+            }
             countViewModel.setUserCount(getUsername(), count + 1)
+
+        }
+        guide.setOnClickListener {
+            listPrizes.visibility = View.VISIBLE
+            guide.setOnClickListener{
+                listPrizes.visibility = View.GONE
+            }
         }
     }
 

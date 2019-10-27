@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         hogImage.visibility = View.GONE
         tadpoleImage.visibility = View.GONE
         raptorImage.visibility = View.GONE
+        dragonImage.visibility = View.GONE
         listPrizes.visibility = View.GONE
         countViewModel = ViewModelProviders.of(this).get(CountViewModel::class.java)
         countViewModel.getUserCount(getUsername()).observe(this,
@@ -48,6 +49,11 @@ class MainActivity : AppCompatActivity() {
                 hogImage.visibility = View.GONE
                 level.text = "LEVEL 3: RAPTOR"
                 raptorImage.visibility = View.VISIBLE
+            }
+            if(count >= (49).toLong()) {
+                raptorImage.visibility = View.GONE
+                level.text = "LEVEL 3: RAPTOR"
+                dragonImage.visibility = View.VISIBLE
             }
             countViewModel.setUserCount(getUsername(), count + 1)
 

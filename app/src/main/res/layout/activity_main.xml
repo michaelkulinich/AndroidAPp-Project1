@@ -48,7 +48,7 @@
         app:layout_constraintLeft_toRightOf="@id/myCounter"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/myButton"
-        android:text="LEVEL 1: 5 clicks\nLevel 2: 10 clicks\nLevel 3: 20 clicks\nClick guide to close"
+        android:text="Level 1: 5 clicks\nLevel 2: 10 clicks\nLevel 3: 20 clicks\nLevel 4: 50 Clicks\nClick guide to close"
         android:textSize="20dp"
          />
 
@@ -78,6 +78,16 @@
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:src="@mipmap/ic_velociraptor"
+        app:layout_constraintBottom_toTopOf="@id/myButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        />
+    <ImageView
+        android:id="@+id/dragonImage"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@mipmap/ic_dragon"
         app:layout_constraintBottom_toTopOf="@id/myButton"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

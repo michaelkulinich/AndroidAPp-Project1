@@ -97,14 +97,22 @@
 
     <TextView
         android:id="@+id/level"
-        android:layout_width="214dp"
-        android:layout_height="112dp"
+        android:layout_width="348dp"
+        android:layout_height="91dp"
         android:text="LEVEL 1: TadPole"
         android:textSize="30dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/myButton"
-         />
+        app:layout_constraintTop_toBottomOf="@id/myButton" />
+
+
+    <com.giphy.sdk.ui.views.GPHMediaView
+        android:id="@+id/gifImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/myCounter"
+        app:layout_constraintRight_toLeftOf="@id/guide" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

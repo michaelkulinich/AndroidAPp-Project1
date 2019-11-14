@@ -8,16 +8,21 @@ import android.view.View
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_main.*
 import com.example.firstprogram.R
+import com.example.firstprogram.viewmodel.GifViewModel
+import com.example.firstprogram.Gif
+import android.provider.MediaStore
+import com.bumptech.glide.Glide
 import com.giphy.sdk.core.models.Media
-import com.giphy.sdk.core.models.enums.RenditionType
-import com.giphy.sdk.ui.GPHContentType
-import com.giphy.sdk.ui.GPHContentType.*
-import com.giphy.sdk.ui.GPHSettings
 import com.giphy.sdk.ui.GiphyCoreUI
 import com.giphy.sdk.ui.themes.GridType
-import com.giphy.sdk.ui.themes.GridType.*
 import com.giphy.sdk.ui.themes.LightTheme
+import com.giphy.sdk.ui.GPHContentType
+import com.giphy.sdk.ui.GPHSettings
+import com.giphy.sdk.ui.views.GPHMediaView
+import com.giphy.sdk.ui.views.GifView
 import com.giphy.sdk.ui.views.GiphyDialogFragment
+import com.giphy.sdk.core.models.enums.RenditionType
+import kotlin.random.Random.Default.nextInt
 import java.util.*
 
 
@@ -26,6 +31,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var countViewModel: CountViewModel
+    private lateinit var gifViewModel: GifViewModel
     private var count: Long = 0
 
     //fun getStore() = getPreferences(Context.MODE_PRIVATE)
@@ -35,26 +41,27 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-        GiphyCoreUI.configure(this, "7Hoz4hOd8Ve9iQVOAX79kF3IsEUeombI")
-        var settings = GPHSettings(gridType = waterfall, theme = LightTheme, dimBackground = true)
-        val gifsDialog = GiphyDialogFragment.newInstance(settings)
-        settings.mediaTypeConfig = arrayOf(GPHContentType.gif)
-        gifsDialog.show(supportFragmentManager, "gifs_dialog")
-
-
-        gifsDialog.gifSelectionListener = object: GiphyDialogFragment.GifSelectionListener {
-            override fun onGifSelected(media: Media) {
-                gifImage.setMedia(media, RenditionType.original)
-            }
-
-            override fun onDismissed() {
-                //Your user dismissed the dialog without selecting a GIF
-            }
-        }
-
+        val context = this
         setContentView(R.layout.activity_main)
+
+//        GiphyCoreUI.configure(this, "7Hoz4hOd8Ve9iQVOAX79kF3IsEUeombI")
+//        var settings = GPHSettings(gridType = waterfall, theme = LightTheme, dimBackground = true)
+//        val gifsDialog = GiphyDialogFragment.newInstance(settings)
+//        settings.mediaTypeConfig = arrayOf(GPHContentType.gif)
+//        gifsDialog.show(supportFragmentManager, "gifs_dialog")
+//
+//
+//        gifsDialog.gifSelectionListener = object: GiphyDialogFragment.GifSelectionListener {
+//            override fun onGifSelected(media: Media) {
+//                gifImage.setMedia(media, RenditionType.original)
+//            }
+//
+//            override fun onDismissed() {
+//                //Your user dismissed the dialog without selecting a GIF
+//            }
+//        }
+//
+//        setContentView(R.layout.activity_main)
         level.visibility = View.GONE
         hogImage.visibility = View.GONE
         tadpoleImage.visibility = View.GONE
@@ -67,6 +74,11 @@ class MainActivity : AppCompatActivity() {
         countViewModel = ViewModelProviders.of(this).get(CountViewModel::class.java)
         countViewModel.getUserCount(getUsername()).observe(this,
             androidx.lifecycle.Observer { updateCounter(it) })
+
+
+        gifViewModel = ViewModelProviders.of(this).get(GifViewModel::class.java)
+        gifViewModel.getRandomGif("andorid").observe(this,
+            androidx.lifecycle.Observer { loadGif(it) })
 
         myButton.setOnClickListener {
             if(count >= (4).toLong()) {
@@ -149,4 +161,10 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    private fun loadGif(gif: Gif){
+        Glide.with(this)
+            .load(gif.url)
+            .into(gifImage)
+
+    }
 }
